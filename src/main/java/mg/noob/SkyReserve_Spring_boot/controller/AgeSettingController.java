@@ -15,21 +15,26 @@ public class AgeSettingController {
     private AgeSettingService ageSettingService;
 
     @GetMapping("/form")
-    public String showForm(@RequestParam(required = false) Long id , Model model) {
-        AgeSetting ageSetting = id != null
-                ? ageSettingService.getAgeSettingById(id).orElse(new AgeSetting())
-                : new AgeSetting();
+    public String showForm( Model model) {
+        AgeSetting ageSetting = ageSettingService.getAgeSettingById(1L).orElse(new AgeSetting());
+
         model.addAttribute("ageSetting", ageSetting);
         return "age-settings/form";
     }
 
     @PostMapping("/save")
-    public String saveAgeSetting(@ModelAttribute AgeSetting ageSetting) {
+    public String saveAgeSetting(@ModelAttribute AgeSetting ageSetting, Model model)  {
+        String message = "";
         if (ageSetting.getAgeSettingId() != null) {
             ageSettingService.updateAgeSetting(ageSetting.getAgeSettingId(), ageSetting);
+            message = "Age setting updated successfully";
         } else {
             ageSettingService.saveAgeSetting(ageSetting);
+            message = "Age setting saved successfully";
         }
-        return "redirect:/age-settings/form";
+        model.addAttribute("message", message);
+        model.addAttribute("ageSetting", ageSetting);
+        return "age-settings/form";
+
     }
 }
