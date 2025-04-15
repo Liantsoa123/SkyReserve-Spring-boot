@@ -18,7 +18,7 @@ public class ReservationStatus {
     @Column(name = "reservation_status_id", nullable = false)
     private Integer id;
 
-    @Column(name = "reseravtion_name", nullable = false, length = 250)
+    @Column(name = "reservation_name", nullable = false, length = 250)
     private String reseravtionName;
 
 }
