@@ -25,6 +25,9 @@ public class Reservation {
     @Column(name = "seats_number", nullable = false)
     private Integer seatsNumber;
 
+    @Column(name = "seats_number_children", nullable = false)
+    private  Integer seatsNumberChildren;
+
     @ColumnDefault("false")
     @Column(name = "has_promotion", nullable = false)
     private Boolean hasPromotion = false;
