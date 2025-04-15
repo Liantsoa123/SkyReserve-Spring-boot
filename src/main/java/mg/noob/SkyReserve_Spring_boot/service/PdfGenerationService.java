@@ -74,6 +74,7 @@ public class PdfGenerationService {
                 .format(formatter);
         document.add(new Paragraph("Date de réservation: " + reservationDate, NORMAL_FONT));
         document.add(new Paragraph("Nombre de sièges: " + reservation.getSeatsNumber(), NORMAL_FONT));
+        document.add(new Paragraph("Nombre de sièges enfants: " + reservation.getSeatsNumberChildren(), NORMAL_FONT));
         document.add(new Paragraph(
                 "Statut de la réservation: " + reservation.getReservationStatus().getReseravtionName(), NORMAL_FONT));
         document.add(new Paragraph("Type de siège: " + reservation.getSeatType().getTypeName(), NORMAL_FONT));
@@ -125,6 +126,7 @@ public class PdfGenerationService {
         addTableRow(table, "Type de siège", reservation.getSeatType().getTypeName());
         addTableRow(table, "Statut", reservation.getReservationStatus().getReseravtionName());
         addTableRow(table, "Nombre de sièges", String.valueOf(reservation.getSeatsNumber()));
+        addTableRow(table, "Nombre de sièges enfants", String.valueOf(reservation.getSeatsNumberChildren()));
         addTableRow(table, "Date de départ", departureDate);
         addTableRow(table, "Date d'arrivée", arrivalDate);
         addTableRow(table, "Passager", reservation.getUser().getName());
